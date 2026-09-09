@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -11,31 +11,31 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* CAMUFLAGEM + ÁREA DE RESPIRO PRO NEON DISSOLVER */
+    /* CAMUFLAGEM ÓPTICA COM O NOTION DARK + RESPIRO PRO GLOW */
     html, body {
       background-color: #191919 !important;
       color-scheme: dark;
       display: flex;
       justify-content: center;
       align-items: center;
-      /* O segredo: 20px em cima/baixo e 45px nas laterais para o glow morrer no escuro */
-      padding: 20px 45px;
-      min-height: 100px;
+      padding: 14px 20px; /* Margem calculada para o neon dissolver suave sem cortar */
+      min-height: 85px;
       overflow: hidden;
     }
 
-    /* O BOTÃO TÁTICO */
+    /* O BOTÃO TÁTICO ESTILO HUD DE COMBATE */
     .btn-fundador {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      /* Deixa o botão respirar sem colar na borda do iframe */
-      width: auto;
-      max-width: 100%;
-      padding: 16px 36px;
-      font-size: 14px;
+      gap: 10px;
+      /* Ocupa toda a largura do bloco no Notion, até o limite de 620px */
+      width: 100%;
+      max-width: 620px;
+      padding: 16px 24px;
+      /* Fonte inteligente: se adapta do celular ao monitor sem quebrar linha */
+      font-size: clamp(13px, 3vw, 15px);
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -51,21 +51,21 @@
       box-shadow: 0 4px 14px rgba(255, 184, 0, 0.25);
     }
 
-    /* EFEITO 1: PASSOU O MOUSE (NEON RADIAL SUAVE) */
+    /* EFEITO 1: PASSOU O MOUSE (NEON RADIAL SUAVE SEM CORTES) */
     .btn-fundador:hover {
       background: #FFC82C;
       transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255, 200, 44, 0.65), 0 0 40px rgba(255, 184, 0, 0.2);
+      box-shadow: 0 0 20px rgba(255, 200, 44, 0.7), 0 0 40px rgba(255, 184, 0, 0.25);
       border-color: #FFE680;
     }
 
-    /* EFEITO 2: APERTOU (CLIQUE VERDE TÁTICO) */
+    /* EFEITO 2: APERTOU (FEEDBACK TÁTIL VERDE NEON) */
     .btn-fundador:active,
     .btn-fundador.clicado {
       background: #00E575 !important;
       border-color: #5CFFAB !important;
       color: #052613 !important;
-      box-shadow: 0 0 25px rgba(0, 229, 117, 0.8), 0 0 50px rgba(0, 229, 117, 0.3) !important;
+      box-shadow: 0 0 25px rgba(0, 229, 117, 0.85), 0 0 50px rgba(0, 229, 117, 0.35) !important;
       transform: scale(0.98);
     }
 
@@ -82,7 +82,7 @@
 </head>
 <body>
 
-  <!-- COLOQUE O LINK DO SEU GOOGLE FORMS NO 'href' ABAIXO -->
+  <!-- LINK DO GOOGLE FORMS CONECTADO -->
   <a 
     href="https://forms.gle/6FgjFP5EZ5yaGy4K7" 
     target="_blank" 
@@ -91,7 +91,7 @@
     onclick="dispararClique()"
   >
     <span class="btn-icon">⚡</span>
-    <span id="btnText">ENTRAR PARA A LISTA VIP // VAGAS DE FUNDADOR</span>
+    <span id="btnText">QUERO MINHA VAGA DE FUNDADOR</span>
   </a>
 
   <script>
@@ -99,14 +99,14 @@
       const btn = document.getElementById('ctaBtn');
       const text = document.getElementById('btnText');
       
-      // Vira verde neon no clique
+      // Feedback imediato no clique: vira verde neon
       btn.classList.add('clicado');
       text.innerText = "ACESSO AUTORIZADO // ABRINDO...";
       
-      // Reseta depois de 2.5s se a pessoa voltar na aba
+      // Reseta o texto caso o usuário volte para a página do Notion
       setTimeout(() => {
         btn.classList.remove('clicado');
-        text.innerText = "ENTRAR PARA A LISTA VIP // VAGAS DE FUNDADOR";
+        text.innerText = "QUERO MINHA VAGA DE FUNDADOR";
       }, 2500);
     }
   </script>
