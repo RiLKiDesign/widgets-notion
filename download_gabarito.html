@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download // Diagrama_Cyber-Editorial</title>
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    }
+    body {
+      background-color: #0d0d0d;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 24px;
+    }
+    .card {
+      background: #191919;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 40px 30px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.6);
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255, 184, 0, 0.15);
+      color: #FFB800;
+      border: 1px solid #FFB800;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    h1 { 
+      font-size: 20px; 
+      font-weight: 800; 
+      margin-bottom: 12px; 
+      text-transform: uppercase; 
+      letter-spacing: 0.5px; 
+    }
+    p { 
+      color: #999; 
+      font-size: 14px; 
+      line-height: 1.6; 
+      margin-bottom: 26px; 
+    }
+    .btn-salvar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px;
+      background: #FFB800;
+      color: #0d0d0d;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(255, 184, 0, 0.25);
+    }
+    .btn-salvar:hover { 
+      background: #FFC82C; 
+      box-shadow: 0 0 25px rgba(255, 184, 0, 0.5); 
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="badge">FLUXO DAIA // ATIVO DE DIREÇÃO</div>
+    <h1>Diagrama_Cyber-Editorial</h1>
+    <p>O download do arquivo de coordenadas deve iniciar automaticamente em instantes.</p>
+    
+    <a href="Diagrama_Cyber-Editorial.png" download="Diagrama_Cyber-Editorial.png" class="btn-salvar" id="manualBtn">
+      ⚡ BAIXAR MANUALMENTE (.PNG)
+    </a>
+  </div>
+
+  <script>
+    // Dispara o download automático assim que a tela abre, fora do sandbox do Notion
+    window.onload = () => {
+      setTimeout(() => {
+        const link = document.createElement('a');
+        link.href = 'Diagrama_Cyber-Editorial.png';
+        link.download = 'Diagrama_Cyber-Editorial.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }, 400);
+    };
+  </script>
+
+</body>
+</html>
