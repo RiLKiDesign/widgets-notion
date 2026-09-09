@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Ignora o rastreamento para o Imgur não bloquear os pôsteres -->
+  <meta name="referrer" content="no-referrer">
+  <title>Pôster Cyber-Editorial</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      /* Cor idêntica ao fundo escuro nativo do Notion */
+      background-color: #191919; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .swiper {
+      width: 100%;
+      max-width: 440px;
+      padding-bottom: 38px;
+    }
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .swiper-slide img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5; /* Garante proporção vertical de cartaz */
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+      user-select: none;
+    }
+    
+    /* Remove a fonte do Swiper que quebrava como texto */
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      display: none !important;
+    }
+    
+    /* Customização dos botões SVG com visual Cyber */
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 40px;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: rgba(0, 0, 0, 0.9);
+      border-color: #FACC15;
+      transform: scale(1.08);
+    }
+    
+    /* Bullets de Paginação */
+    .swiper-pagination-bullet {
+      background: #71717A;
+      opacity: 0.5;
+    }
+    .swiper-pagination-bullet-active {
+      background: #FACC15;
+      opacity: 1;
+      width: 18px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="https://lh3.googleusercontent.com/d/1ODvZp66KprcHcsSt9jno29cUKedr8edm" referrerpolicy="no-referrer" alt="Slide 1"></div>
+      <div class="swiper-slide"><img src="https://lh3.googleusercontent.com/d/1baTzSC0jqXuiJFnBbQiApDx1ldHQHlNr" referrerpolicy="no-referrer" alt="Slide 2"></div>
+      <div class="swiper-slide"><img src="https://lh3.googleusercontent.com/d/11V7Sos8-osTsZXI7BuTD0HRVZMzkx6RJ" referrerpolicy="no-referrer" alt="Slide 3"></div>
+      <div class="swiper-slide"><img src="https://lh3.googleusercontent.com/d/1W5OPHifwmOXE78BUGFKTYEFcraR7uuUK" referrerpolicy="no-referrer" alt="Slide 4"></div>
+      <div class="swiper-slide"><img src="https://lh3.googleusercontent.com/d/10trUz8HXqWd7Pl8lp8novajLQXA9Jjsv" referrerpolicy="no-referrer" alt="Slide 5"></div>
+      <div class="swiper-slide"><img src="https://lh3.googleusercontent.com/d/10EJbRWql7prRCfMhpwO9SB1-__B7T6CS" referrerpolicy="no-referrer" alt="Slide 6"></div>
+      <div class="swiper-slide"><img src="https://lh3.googleusercontent.com/d/1kggn62j4vB54ZDbKdXY7jVacZOOdWiP_" referrerpolicy="no-referrer" alt="Slide 7"></div>
+    </div>
+    
+    <!-- Controles -->
+    <div class="swiper-pagination"></div>
+    
+    <!-- Setas com SVG puro (não dependem de conexão externa) -->
+    <div class="swiper-button-prev">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </div>
+    <div class="swiper-button-next">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FACC15" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      grabCursor: true,
+      speed: 400,
+      effect: 'slide',
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      keyboard: {
+        enabled: true,
+      },
+    });
+  </script>
+</body>
+</html>
