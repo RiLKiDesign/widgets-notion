@@ -12,12 +12,13 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
     }
     body {
-      background-color: #191919; /* Integração nativa com Dark Mode do Notion */
+      background-color: #191919;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       padding: 12px;
+      overflow: hidden;
     }
     .card {
       width: 100%;
@@ -59,7 +60,6 @@
       color: #71717A;
       font-family: monospace;
     }
-    /* Botão de Cópia Tático */
     .copy-btn {
       background: #FACC15;
       color: #000;
@@ -76,21 +76,18 @@
       gap: 8px;
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .copy-btn:hover {
       background: #FDE047;
       transform: translateY(-1px);
       box-shadow: 0 4px 14px rgba(250, 204, 21, 0.35);
     }
-    .copy-btn:active {
-      transform: translateY(0);
-    }
     .copy-btn.copied {
       background: #22C55E !important;
       color: #FFFFFF !important;
       box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
     }
-    /* Visualizador de Terminal */
     .preview-box {
       background: #141414;
       border: 1px solid #27272A;
@@ -108,7 +105,6 @@
       white-space: pre-wrap;
       word-break: break-word;
     }
-    /* Barra de rolagem customizada */
     .preview-box::-webkit-scrollbar {
       width: 5px;
     }
@@ -126,7 +122,7 @@
         <span class="badge">DAIA // SYSTEM v1.0</span>
         <span class="status">[POSTER_CYBER-EDITORIAL]</span>
       </div>
-      <button class="copy-btn" id="copyBtn" onclick="execCopy()">
+      <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
           <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
@@ -136,14 +132,7 @@
     </div>
 
     <div class="preview-box">
-      <pre>## PERSONA
-Você é o Engenheiro DAIA do RiLKi Labs e Diretor de Arte Sênior de Cyber-Editorial...
-(Prompt completo pronto para injeção no Gemini ou ChatGPT)</pre>
-    </div>
-  </div>
-
-  <!-- Contêiner do prompt integral -->
-  <textarea id="promptBuffer" style="position: absolute; left: -9999px; top: -9999px;">## PERSONA
+      <pre id="promptContent">## PERSONA
 Você é o Engenheiro DAIA do RiLKi Labs e Diretor de Arte Sênior de Cyber-Editorial. Sua especialidade é a colisão entre fotografia de retrato hiper-realista e design de interface UI/HUD tática e militar (Mixed-Media). Você opera com rigor matemático e geometria angular na distribuição de tipografia e renderização de efeitos ópticos de materiais, como glassmorphism de alta refração sobre fotografia.
 
 ---
@@ -207,51 +196,36 @@ Gerar uma fotografia editorial mista de hiper-realismo cinematográfico em propo
 
 ## OUTPUT
 Etapa 1: Estritamente a mensagem de cobrança da Regra 1.
-Etapa 2: Pôster Cyber-Editorial brutalista (1080 × 1440 px), unindo a base fisionômica do usuário, a direção de arte Chiaroscuro e o layout decodificado pixel a pixel a partir de "Diagrama_Cyber-Editorial".</textarea>
+Etapa 2: Pôster Cyber-Editorial brutalista (1080 × 1440 px), unindo a base fisionômica do usuário, a direção de arte Chiaroscuro e o layout decodificado pixel a pixel a partir de "Diagrama_Cyber-Editorial".</pre>
+    </div>
+  </div>
 
   <script>
-    function execCopy() {
-      const buffer = document.getElementById('promptBuffer');
+    function copyPrompt() {
+      const text = document.getElementById('promptContent').innerText;
       const btn = document.getElementById('copyBtn');
-      const textToCopy = buffer.value;
 
-      // Execução com fallback para garantir compatibilidade com iframes restritos
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(textToCopy).then(() => showSuccess(btn)).catch(() => fallbackCopy(buffer, btn));
-      } else {
-        fallbackCopy(buffer, btn);
-      }
-    }
-
-    function fallbackCopy(buffer, btn) {
-      buffer.select();
-      buffer.setSelectionRange(0, 99999);
-      try {
-        document.execCommand('copy');
-        showSuccess(btn);
-      } catch (err) {
-        alert('Erro ao copiar automaticamente. Selecione manualmente o texto.');
-      }
-    }
-
-    function showSuccess(btn) {
-      btn.classList.add('copied');
-      btn.innerHTML = `
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <span>Prompt Copiado!</span>
-      `;
-      setTimeout(() => {
-        btn.classList.remove('copied');
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
         btn.innerHTML = `
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
-          <span>Copiar Prompt</span>
+          <span>Prompt Copiado!</span>
         `;
-      }, 2000);
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copiar Prompt</span>
+          `;
+        }, 2000);
+      }).catch(err => {
+        console.error('Erro ao copiar:', err);
+      });
     }
   </script>
 </body>
