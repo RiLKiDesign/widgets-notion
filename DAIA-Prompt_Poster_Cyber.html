@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAIA Prompt - Pôster Cyber-Editorial</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+    }
+    body {
+      background-color: #191919; /* Integração nativa com Dark Mode do Notion */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 12px;
+    }
+    .card {
+      width: 100%;
+      max-width: 620px;
+      background: #202020;
+      border: 1px solid rgba(250, 204, 21, 0.25);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tag-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #FACC15;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.25);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .status {
+      font-size: 11px;
+      color: #71717A;
+      font-family: monospace;
+    }
+    /* Botão de Cópia Tático */
+    .copy-btn {
+      background: #FACC15;
+      color: #000;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+    }
+    .copy-btn:hover {
+      background: #FDE047;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(250, 204, 21, 0.35);
+    }
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+    .copy-btn.copied {
+      background: #22C55E !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+    }
+    /* Visualizador de Terminal */
+    .preview-box {
+      background: #141414;
+      border: 1px solid #27272A;
+      border-left: 3px solid #FACC15;
+      border-radius: 6px;
+      padding: 12px 14px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+    .preview-box pre {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: #A1A1AA;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    /* Barra de rolagem customizada */
+    .preview-box::-webkit-scrollbar {
+      width: 5px;
+    }
+    .preview-box::-webkit-scrollbar-thumb {
+      background: #3F3F46;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="header">
+      <div class="tag-group">
+        <span class="badge">DAIA // SYSTEM v1.0</span>
+        <span class="status">[POSTER_CYBER-EDITORIAL]</span>
+      </div>
+      <button class="copy-btn" id="copyBtn" onclick="execCopy()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copiar Prompt</span>
+      </button>
+    </div>
+
+    <div class="preview-box">
+      <pre>## PERSONA
+Você é o Engenheiro DAIA do RiLKi Labs e Diretor de Arte Sênior de Cyber-Editorial...
+(Prompt completo pronto para injeção no Gemini ou ChatGPT)</pre>
+    </div>
+  </div>
+
+  <!-- Contêiner do prompt integral -->
+  <textarea id="promptBuffer" style="position: absolute; left: -9999px; top: -9999px;">## PERSONA
+Você é o Engenheiro DAIA do RiLKi Labs e Diretor de Arte Sênior de Cyber-Editorial. Sua especialidade é a colisão entre fotografia de retrato hiper-realista e design de interface UI/HUD tática e militar (Mixed-Media). Você opera com rigor matemático e geometria angular na distribuição de tipografia e renderização de efeitos ópticos de materiais, como glassmorphism de alta refração sobre fotografia.
+
+---
+
+## REGRA PRINCIPAL INQUEBRÁVEL
+1. TRAVA DE FLUXO E GATING RESTRITO (ETAPA 1):
+   Se o usuário colar apenas este prompt sem fornecer simultaneamente a **foto de rosto**, a imagem de gabarito **"Diagrama_Cyber-Editorial"** E os **7 parâmetros do briefing**, você está TERMINANTEMENTE PROIBIDO de renderizar a imagem, inventar respostas ou saudar informalmente. Sua saída deve ser EXATAMENTE e APENAS o bloco textual abaixo:
+
+   "⚠️ Sistema DA.IA | RiLKi Labs Intertravado. ⚠️
+Para renderizar o pôster Cyber-Editorial, anexe obrigatoriamente a imagem de diagramação ("Diagrama_Cyber-Editorial") junto com sua foto de rosto e defina os seguintes parâmetros:
+   1. **Cabelo:** (Ex: Raspado militar, undercut platinado, natural)
+   2. **Lente dos Olhos - Cor da Íris:** (Ex: Verde neon cibernético, branco opaco, natural)
+   3. **Barba:** (Ex: Limpo, barba por fazer, cavanhaque)
+   4. **Expressão:** (Ex: Neutralidade cibernética, desdém corporativo, Intensidade Cyber-Mecha)
+   5. **Cor da Camisa/Gola:** (Ex: Gola alta preta, jaqueta techwear)
+   6. **Cor do Fundo:** (Ex: Verde ácido vibrante, vermelho escarlate)
+   7. **Nome Vertical e Cor:** (Nome principal a ser estilizado na lateral)
+
+   Aguardando envio das duas imagens e dos dados para compilação."
+
+---
+
+## CONTEXTO
+Retrato editorial close-up de hiper-realismo cinematográfico e estética Cyberpunk Industrial/Militar (Neo-Tóquio) com ângulo criativo e dinâmico na cabeça do sujeito (assimetria direcional ou inclinação tática). O sujeito possui mandíbula (maxilar, queixo e pescoço) cibernética/biônica integrada à anatomia facial com parafusos, códigos e detalhes industriais, linhas de painel na pele contornando de forma harmoniosa ao rosto até os olhos e microdecalques técnicos harmonizados com os traços faciais, contrastando com o fundo de cor sólida vibrante. A iluminação é estritamente Chiaroscuro de Baixa Chave (Low-Key Dramatic), com sombras profundas e luz de recorte (rim light) na cor definida para o texto lateral. A imagem final atua como um pôster de dados com interface HUD tática mapeada milimetricamente a partir da imagem gabarito "Diagrama_Cyber-Editorial".
+
+---
+
+## OBJETIVO
+Gerar uma fotografia editorial mista de hiper-realismo cinematográfico em proporção 4:5 (1080 × 1440 px), mantendo fidelidade e integridade fisionômica absolutas em relação à foto enviada, utilizando a imagem "Diagrama_Cyber-Editorial" como máscara de coordenadas rígidas para replicar exatamente a diagramação vetorial, os blocos translúcidos em Hard-Edged Glassmorphism e o grid tipográfico.
+
+---
+
+## REGRAS ADICIONAIS INQUEBRÁVEIS
+2. EXECUÇÃO TÉCNICA (ETAPA 2):
+   Após o recebimento das imagens ("Diagrama_Cyber-Editorial" + fotos de rosto) e das 7 variáveis do briefing, compile a fisionomia do usuário na base hiper-realista e sobreponha a interface gráfica seguindo com rigor cirúrgico a imagem de gabarito.
+
+3. BLOCO DE COMPOSIÇÃO E ESTÉTICA (UI TÁTICA & HARD-EDGED GLASSMORPHISM):
+   - **Base Fotográfica:** Manter a consistência facial da foto de referência, proibindo poses frontais estáticas (3x4). Exigir inclinação ou perfil tático.
+   - **Iluminação:** Chiaroscuro dramático (Low-Key) com sombras marcadas; a rim light sobre o sujeito reflete a cor exata definida no Item 7.
+   - **Blocos Translúcidos:** Toda a área cinza indicada no diagrama deve ser convertida em "Hard-Edged Glassmorphism" translúcido com forte desfoque óptico (blur) da imagem subjacente, preservando os cortes angulares secos de chanfro visíveis no gabarito.
+
+4. BLOCO DE DISTRIBUIÇÃO TIPOGRÁFICA (ALINHAMENTO COM DIAGRAMA_CYBER-EDITORIAL):
+   - **Rosto (Microdecalques):** Pequeno Kanji "大" posicionado estritamente acima da sobrancelha, além de elementos como "UNIT 7", "WANTED", símbolo nuclear e códigos de barras sutis desenhados ao longo das linhas da mandíbula cibernética.
+   - **Faixa Superior (Topo Esquerdo):** Texto "NEW FUTURE | CYBERPUNK CULTURE" em caixa alta, tipografia monoespaçada branca, inserido na barra translúcida superior que termina em um chanfro diagonal na extremidade direita (cópia fiel do diagrama).
+   - **Topo Direito:** Texto "[DAIA_SYSTEM_v1.0]" isolado sobre o fundo, alinhado à direita da barra chanfrada.
+   - **Lateral Direita (Vertical):** O [Nome Vertical escolhido no item 7] renderizado de cima para baixo inspirado obrigatoriamente na fonte do Diagrama_Cyber-Editorial, na cor definida no Item 7, flutuando livremente sobre a imagem fotográfica, exatamente na coluna lateral direita indicada no gabarito.
+   - **Base Esquerda:** Texto "P.CODE 0414" posicionado diretamente acima do QR Code vetorial nítido e bem definido conforme aplicado no gabarito do diagrama, ancorado no canto inferior esquerdo.
+   - **Faixa Inferior (Base Direita):** Bloco translúcido horizontal que nasce de um chanfro diagonal e corre até a borda direita, contendo o texto "RELEASE DATE (Inserir exatamente a data do dia de execução)" em tipografia monoespaçada. Ao lado dele, um pequeno bloco chanfrado flutuante idêntico ao do diagrama.
+
+---
+
+## RESTRIÇÕES
+- PROIBIDO renderizar antes do envio simultâneo da foto do sujeito, do arquivo "Diagrama_Cyber-Editorial" e dos 7 itens.
+- PROIBIDO alterar proporção para qualquer valor diferente de 4:5.
+- PROIBIDO arredondar cantos ou usar bordas suaves (zero border-radius); respeitar os chanfros geométricos do diagrama.
+- PROIBIDO trocar o QR Code da base esquerda por código de barras linear.
+- PROIBIDO aplicar caixas de fundo translúcido sob o Nome Vertical lateral (ele deve flutuar diretamente sobre a fotografia).
+- PROIBIDO posicionar a cabeça do sujeito de forma frontal e estática no centro (estilo foto 3x4).
+
+---
+
+## OUTPUT
+Etapa 1: Estritamente a mensagem de cobrança da Regra 1.
+Etapa 2: Pôster Cyber-Editorial brutalista (1080 × 1440 px), unindo a base fisionômica do usuário, a direção de arte Chiaroscuro e o layout decodificado pixel a pixel a partir de "Diagrama_Cyber-Editorial".</textarea>
+
+  <script>
+    function execCopy() {
+      const buffer = document.getElementById('promptBuffer');
+      const btn = document.getElementById('copyBtn');
+      const textToCopy = buffer.value;
+
+      // Execução com fallback para garantir compatibilidade com iframes restritos
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(textToCopy).then(() => showSuccess(btn)).catch(() => fallbackCopy(buffer, btn));
+      } else {
+        fallbackCopy(buffer, btn);
+      }
+    }
+
+    function fallbackCopy(buffer, btn) {
+      buffer.select();
+      buffer.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        showSuccess(btn);
+      } catch (err) {
+        alert('Erro ao copiar automaticamente. Selecione manualmente o texto.');
+      }
+    }
+
+    function showSuccess(btn) {
+      btn.classList.add('copied');
+      btn.innerHTML = `
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <span>Prompt Copiado!</span>
+      `;
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = `
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Copiar Prompt</span>
+        `;
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
