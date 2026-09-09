@@ -74,11 +74,17 @@
       letter-spacing: 0.5px;
       transition: all 0.2s ease;
       box-shadow: 0 4px 14px rgba(255, 184, 0, 0.25);
+      cursor: pointer;
     }
     .btn-salvar:hover { 
       background: #FFC82C; 
       box-shadow: 0 0 25px rgba(255, 184, 0, 0.5); 
       transform: translateY(-2px);
+    }
+    .btn-salvar:active {
+      transform: scale(0.98);
+      background: #00E575;
+      color: #052613;
     }
   </style>
 </head>
@@ -89,23 +95,56 @@
     <h1>Diagrama_Cyber-Editorial</h1>
     <p>O download do arquivo de coordenadas deve iniciar automaticamente em instantes.</p>
     
-    <a href="Diagrama_Cyber-Editorial.png" download="Diagrama_Cyber-Editorial.png" class="btn-salvar" id="manualBtn">
+    <!-- LINK MANUAL CASO O NAVEGADOR BLOQUEIE A AUTOMAÇÃO -->
+    <a 
+      href="https://rilkidesign.github.io/widgets-notion/Diagrama_Cyber-Editorial.png" 
+      download="Diagrama_Cyber-Editorial.png" 
+      class="btn-salvar" 
+      id="manualBtn"
+    >
       ⚡ BAIXAR MANUALMENTE (.PNG)
     </a>
   </div>
 
   <script>
-    // Dispara o download automático assim que a tela abre, fora do sandbox do Notion
-    window.onload = () => {
-      setTimeout(() => {
+    // DISPARO AUTOMÁTICO VIA MEMÓRIA (BLOB) - À PROVA DE FALHAS
+    async function baixarAutomatico() {
+      const urlImagem = "https://rilkidesign.github.io/widgets-notion/Diagrama_Cyber-Editorial.png";
+      const nomeArquivo = "Diagrama_Cyber-Editorial.png";
+
+      try {
+        const resposta = await fetch(urlImagem);
+        const blob = await resposta.blob();
+        const urlBlob = window.URL.createObjectURL(blob);
+        
         const link = document.createElement('a');
-        link.href = 'Diagrama_Cyber-Editorial.png';
-        link.download = 'Diagrama_Cyber-Editorial.png';
+        link.href = urlBlob;
+        link.download = nomeArquivo;
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
-      }, 400);
-    };
+        
+        // Limpa a memória RAM do navegador após o disparo
+        setTimeout(() => {
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(urlBlob);
+        }, 1000);
+
+      } catch (erro) {
+        // Se der qualquer bloqueio de segurança silencioso, aciona o botão manual normal
+        console.warn("Automação bloqueada pelo navegador. Usando rota física:", erro);
+        const fallback = document.createElement('a');
+        fallback.href = urlImagem;
+        fallback.download = nomeArquivo;
+        document.body.appendChild(fallback);
+        fallback.click();
+        document.body.removeChild(fallback);
+      }
+    }
+
+    // Espera 400ms para a tela carregar visualmente e puxa o gatilho
+    window.addEventListener('load', () => {
+      setTimeout(baixarAutomatico, 400);
+    });
   </script>
 
 </body>
